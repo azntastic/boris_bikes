@@ -11,6 +11,11 @@ describe DockingStation do
     expect(bike).to be_working
   end
 
+  it "won't release a bike if one has already been created" do
+    expect { Bike.new }.to raise_error("no bikes available")
+    print Bike.new
+  end
+
   it { is_expected.to respond_to(:dock_bike).with(1).argument}
 
   it "saves the user's bike to the instance/ docks something" do
