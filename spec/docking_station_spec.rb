@@ -64,7 +64,7 @@ describe DockingStation do
     it "Allows the change of default capacity", :capacity do
       #if capacity is changed, @capacity eq to new capacity
       station = DockingStation.new(30)
-      expect(@capacity).to eq 30
+      expect(station.capacity).to eq 30
     end
     # it "Checks to see if default capacity is 20 when capacity not set"
     #if capacity not changed, @capacity eq to DEFAULT_CAPACITY
