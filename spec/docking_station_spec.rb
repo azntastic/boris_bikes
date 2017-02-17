@@ -13,16 +13,16 @@ describe DockingStation do
 
   it { is_expected.to respond_to(:dock_bike).with(1).argument}
 
-  it "saves the user's bike to the instance/ docks something" do
-    bike = Bike.new
-    expect(subject.dock_bike(bike)).to eq bike
-  end
-
-  it "shows there's a docked bike to user/ report attribute" do
-    bike = Bike.new
-    subject.dock_bike(bike)
-    expect(subject.bike).to eq bike
-  end
+  # it "saves the user's bike to the instance/ docks something" do
+  #   bike = Bike.new
+  #   expect(subject.dock_bike(bike)).to eq bike
+  # end
+  #
+  # it "shows there's a docked bike to user/ report attribute" do
+  #   bike = Bike.new
+  #   subject.dock_bike(bike)
+  #   expect(subject.bike).to eq bike
+  # end
 
   it "shows the released bike is the same as what's been docked" do
     bike = Bike.new
@@ -49,17 +49,17 @@ describe DockingStation do
 
   describe "#full_bike" do
     it "raises an error when station is full", :tag do
-      20.times { subject.dock_bike(Bike.new) }
+      DEFAULT_CAPACITY.times { subject.dock_bike(Bike.new) }
       expect{ subject.dock_bike(Bike.new) }.to raise_error "I iz full"
     end
   end
 
   describe "#notfull_bike" do
     it "allows docking when not full", :tag do
-      19.times { subject.dock_bike(Bike.new) }
+      (DEFAULT_CAPACITY - 1).times { subject.dock_bike(Bike.new) }
       bike20 = Bike.new
       subject.dock_bike(bike20)
-      expect(subject.num_bikes.length).to eq 20
+      expect(subject.num_bikes.length).to eq DEFAULT_CAPACITY
     end
   end
 end

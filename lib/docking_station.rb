@@ -5,6 +5,7 @@ attr_reader :num_bikes
 
   def initialize
     @num_bikes = []
+    DEFAULT_CAPACITY = 20
   end
 
   def release_bike
@@ -23,7 +24,7 @@ attr_reader :num_bikes
 
   private
   def full?
-    @num_bikes.length >= 20
+    @num_bikes.length >= DEFAULT_CAPACITY
   end
 
   def empty?
