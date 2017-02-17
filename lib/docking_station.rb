@@ -1,7 +1,7 @@
 require_relative 'bike'
-attr_reader :num_bikes
 
 class DockingStation
+attr_reader :num_bikes
 
   def initialize
     @num_bikes = []
@@ -17,7 +17,13 @@ class DockingStation
   #this method will send error if @bike already exists
   #@bike will only exist if a bike has already been docked
   #hence that bike will have become instance variable
-    fail "I iz full" if @num_bikes.length >= 20
+    fail "I iz full" if DockingStation.full?
     @num_bikes << bike
   end
+
+  private
+  def full?
+    @num_bikes.length >= 20
+  end
+
 end
