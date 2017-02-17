@@ -49,17 +49,17 @@ describe DockingStation do
 
   describe "#full_bike" do
     it "raises an error when station is full", :tag do
-      DEFAULT_CAPACITY.times { subject.dock_bike(Bike.new) }
+      DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike(Bike.new) }
       expect{ subject.dock_bike(Bike.new) }.to raise_error "I iz full"
     end
   end
 
   describe "#notfull_bike" do
     it "allows docking when not full", :tag do
-      (DEFAULT_CAPACITY - 1).times { subject.dock_bike(Bike.new) }
+      (DockingStation::DEFAULT_CAPACITY - 1).times { subject.dock_bike(Bike.new) }
       bike20 = Bike.new
       subject.dock_bike(bike20)
-      expect(subject.num_bikes.length).to eq DEFAULT_CAPACITY
+      expect(subject.num_bikes.length).to eq DockingStation::DEFAULT_CAPACITY
     end
   end
 end
