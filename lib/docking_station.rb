@@ -18,7 +18,6 @@ class DockingStation
   #hence that bike will have become instance variable
     fail "I iz full" if @num_bikes.length >= 20
     @num_bikes << bike1
-    @bike = bike1
   end
 
   attr_reader :bike
