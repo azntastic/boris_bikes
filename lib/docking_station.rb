@@ -1,4 +1,5 @@
 require_relative 'bike'
+attr_reader :num_bikes
 
 class DockingStation
 
@@ -19,11 +20,4 @@ class DockingStation
     fail "I iz full" if @num_bikes.length >= 20
     @num_bikes << bike
   end
-
-  attr_reader :bike
-  attr_reader :num_bikes
-
-#hello Alice
-#hello Ryan
-
 end
