@@ -13,16 +13,17 @@ describe DockingStation do
 
   it { is_expected.to respond_to(:dock_bike).with(1).argument}
 
-  # it "saves the user's bike to the instance/ docks something" do
-  #   bike = Bike.new
-  #   expect(subject.dock_bike(bike)).to eq bike
-  # end
-  #
-  # it "shows there's a docked bike to user/ report attribute" do
-  #   bike = Bike.new
-  #   subject.dock_bike(bike)
-  #   expect(subject.bike).to eq bike
-  # end
+  it "saves the user's bike to the instance/ docks something", :barray do
+    bike = Bike.new
+    subject.num_bikes << bike
+    expect(subject.dock_bike(bike)).to eq subject.num_bikes
+  end
+
+  it "shows there's a docked bike to user/ report attribute", :barray2 do
+    bike = Bike.new
+    subject.dock_bike(bike)
+    expect(subject.num_bikes.pop).to eq bike
+  end
 
   it "shows the released bike is the same as what's been docked" do
     bike = Bike.new
@@ -36,6 +37,7 @@ describe DockingStation do
     end
   end
 
+  # Old test when docking station could only accept 1 bike
   # describe "#dock_bike" do
   #   it "raises an error when station is full " do
   #     # bike1 = Bike.new
@@ -66,8 +68,11 @@ describe DockingStation do
       station = DockingStation.new(30)
       expect(station.capacity).to eq 30
     end
-    # it "Checks to see if default capacity is 20 when capacity not set"
-    #if capacity not changed, @capacity eq to DEFAULT_CAPACITY
+    it "Checks to see if default capacity is 20 when capacity not set", :capacity do
+      #if capacity not changed, @capacity eq to DEFAULT_CAPACITY
+      station = DockingStation.new
+      expect(station.capacity).to eq 20
    end
+ end
 
 end
